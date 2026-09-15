@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAFAF8">
+<title>Sign in · Daily Tiffin</title>
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script type="module" src="assets/js/theme.js"></script>
+</head>
+<body>
+<main class="auth">
+<section class="auth__box stack">
+  <div class="auth__brand">
+    <a class="lp-brand" href="index.html">Daily <span>Tiffin</span></a>
+    <p class="muted">Homestyle meals, made simple.</p>
+  </div>
+
+  <div class="card card--lg stack">
+    <div class="stack-sm">
+      <span class="eyebrow">Welcome back</span>
+      <h1>Sign in to your account</h1>
+      <p class="muted">Use your username and password to continue.</p>
+    </div>
+
+    <form id="login-form" class="stack" novalidate>
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" class="input" name="username"
+               autocomplete="username" maxlength="50"
+               placeholder="Enter your username" required autofocus>
+      </div>
+
+      <div class="field">
+        <div class="between">
+          <label for="password">Password</label>
+          <button id="toggle-password" class="btn btn--quiet btn--sm"
+                  type="button" aria-label="Show password">Show</button>
+        </div>
+        <input id="password" class="input" name="password"
+               type="password" autocomplete="current-password"
+               maxlength="128" placeholder="Enter your password" required>
+      </div>
+
+      <div class="between wrap">
+        <label class="row small">
+          <input id="remember" type="checkbox">
+          <span>Remember me</span>
+        </label>
+        <button id="forgot" class="btn btn--quiet btn--sm" type="button">
+          Forgot password?
+        </button>
+      </div>
+
+      <button id="login" class="btn btn--primary btn--block" type="submit">
+        Sign in
+      </button>
+    </form>
+
+    <div class="notice">
+      <strong>Demo access</strong>
+      <p class="small muted" style="margin:4px 0 0">
+        Customer: <b>customer</b> / <b>customer123</b><br>
+        Admin: <b>admin</b> / <b>admin123</b>
+      </p>
+    </div>
+
+    <p class="small muted" style="text-align:center">
+      OTP verification can be added later without changing this login screen.
+    </p>
+  </div>
+
+  <p class="small muted" style="text-align:center">
+    <a href="index.html">← Back to home</a>
+  </p>
+</section>
+</main>
+
+<div id="toasts"></div>
+<script type="module" src="assets/js/pages/login.js?v=3"></script>
+</body>
+</html>

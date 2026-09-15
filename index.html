@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAFAF8"><meta name="description" content="Fresh homestyle tiffin meals, simple plans and easy delivery.">
+<title>Daily Tiffin · Homestyle meals</title>
+<link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/components.css"><link rel="stylesheet" href="assets/css/pages.css">
+<script type="module" src="assets/js/theme.js"></script><script src="assets/js/enhancements.js" defer></script>
+<style>
+.home{overflow:hidden}.home__nav{padding-inline:clamp(16px,5vw,72px)}
+.hero--home{max-width:1180px;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);padding-top:clamp(48px,8vw,104px);padding-bottom:clamp(56px,8vw,100px);gap:clamp(28px,6vw,76px)}
+.hero-copy{position:relative;z-index:2}.hero-copy h1{max-width:780px;margin:.1em 0 .25em}.hero-copy .lead{font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.75;max-width:600px}
+.hero-actions{margin-top:22px}.trust-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:28px;color:var(--muted);font-size:.84rem}.trust-row span{display:inline-flex;align-items:center;gap:7px}.trust-row b{color:var(--text)}
+.hero__art--premium{min-height:430px;padding:30px;align-content:end;background:linear-gradient(145deg,var(--accent-soft),var(--surface));border-radius:36px}.plate{min-height:260px;display:grid;place-items:center;border-radius:28px;background:radial-gradient(circle at 50% 40%,var(--surface),var(--accent-soft));border:1px solid var(--border);position:relative;overflow:hidden}.plate::before,.plate::after{content:'';position:absolute;border:1px solid var(--border);border-radius:50%;width:280px;height:280px}.plate::after{width:210px;height:210px}.plate__emoji{font-size:6.5rem;filter:drop-shadow(0 18px 16px rgba(0,0,0,.1));z-index:1}.float-chip{position:absolute;background:var(--surface);border:1px solid var(--border);box-shadow:0 12px 35px -24px rgba(0,0,0,.55);border-radius:999px;padding:9px 12px;font-size:.78rem;z-index:2;animation:chipFloat 4.5s ease-in-out infinite}.chip-a{top:20px;left:18px}.chip-b{right:18px;top:76px;animation-delay:-1.3s}.chip-c{bottom:18px;left:18px;animation-delay:-2.2s}@keyframes chipFloat{50%{transform:translateY(-7px)}}
+.section{max-width:1180px;margin:auto;padding:clamp(48px,7vw,84px) 24px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:26px}.section-head h2{font-size:clamp(1.7rem,3vw,2.5rem)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature-card{min-height:180px;position:relative;overflow:hidden}.feature-num{font-size:3.5rem;font-weight:800;letter-spacing:-.08em;opacity:.09;position:absolute;right:18px;bottom:8px}
+.menu-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.food-card{position:relative;overflow:hidden}.food-art{height:180px;border-radius:20px;background:radial-gradient(circle at 50% 45%,var(--surface),var(--accent-soft));display:grid;place-items:center;font-size:4.5rem;margin-bottom:18px}.food-meta{display:flex;align-items:center;justify-content:space-between;gap:10px}.food-card .btn{margin-top:15px;width:100%}
+.plan-banner{display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:center;background:var(--accent-soft);border:1px solid var(--border);border-radius:28px;padding:clamp(22px,4vw,40px)}.plan-price{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.06em}.mini-points{display:grid;gap:10px}.mini-points div{display:flex;gap:9px;align-items:center;font-size:.9rem}
+.cta{background:var(--text);color:var(--bg);border-radius:30px;padding:clamp(28px,5vw,50px);display:flex;align-items:center;justify-content:space-between;gap:24px}.cta p{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+.home-footer{border-top:1px solid var(--border);padding:28px 24px 38px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.82rem;max-width:1180px;margin:auto}
+@media(max-width:899px){.hero--home{grid-template-columns:1fr}.hero__art--premium{min-height:350px}.menu-preview,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.plan-banner{grid-template-columns:1fr}}
+@media(max-width:599px){.hero--home{padding-inline:18px}.hero__art--premium{min-height:300px;border-radius:26px;padding:18px}.plate{min-height:210px}.plate__emoji{font-size:5rem}.float-chip{font-size:.7rem}.section{padding-inline:18px}.section-head{align-items:start;flex-direction:column}.menu-preview,.feature-grid{grid-template-columns:1fr}.food-art{height:155px}.cta{border-radius:24px;flex-direction:column;align-items:flex-start}.trust-row{gap:12px}.home__nav .btn{min-width:88px}}
+@media(prefers-reduced-motion:reduce){.float-chip{animation:none}}
+</style>
+</head>
+<body class="home">
+<nav class="lp-nav home__nav"><a class="lp-brand" href="index.html">Daily <span>Tiffin</span></a><div class="row"><button class="btn btn--quiet btn--sm" data-theme-toggle aria-label="Toggle theme">◐</button><a class="btn btn--ghost btn--sm" href="login.html">Sign in</a></div></nav>
+<main>
+<section class="hero hero--home">
+<div class="hero-copy stack">
+<span class="eyebrow">Fresh every day · Made with care</span>
+<h1>A little taste of home, delivered.</h1>
+<p class="lead muted">Comforting vegetarian meals prepared fresh for busy days. Pick today's tiffin, make it a routine, or order whenever home cooking is what you need.</p>
+<div class="row wrap hero-actions"><a class="btn btn--primary" href="login.html">Explore today's menu →</a><a class="btn btn--ghost" href="#plans">See plans</a></div>
+<div class="trust-row"><span>✦ <b>Freshly prepared</b></span><span>✓ <b>Easy ordering</b></span><span>♡ <b>Homestyle taste</b></span></div>
+</div>
+<div class="hero__art hero__art--premium">
+<div class="plate"><span class="float-chip chip-a">🥗 Fresh today</span><span class="float-chip chip-b">★ 4.8 rated</span><span class="float-chip chip-c">₹120 · thali</span><span class="plate__emoji" aria-hidden="true">🍱</span></div>
+<div class="between"><div><span class="eyebrow">Today's favourite</span><h2>Homestyle Veg Thali</h2></div><span class="price">₹120</span></div>
+<p class="muted small">Dal · seasonal sabzi · rice · rotis · salad</p>
+</div>
+</section>
+
+<section class="section">
+<div class="section-head"><div><span class="eyebrow">Today's menu</span><h2>Simple food. Properly made.</h2></div><a class="btn btn--quiet" href="login.html">View full menu →</a></div>
+<div class="menu-preview">
+<article class="card food-card card--hover"><div class="food-art" aria-hidden="true">🍛</div><div class="food-meta"><h3>Paneer Special</h3><span class="price">₹160</span></div><p class="small muted">Paneer curry, jeera rice, rotis & pickle.</p><a class="btn btn--ghost btn--sm" href="login.html">Order this</a></article>
+<article class="card food-card card--hover"><div class="food-art" aria-hidden="true">🥣</div><div class="food-meta"><h3>Light & Fresh</h3><span class="price">₹100</span></div><p class="small muted">Moong dal khichdi, curd & fresh salad.</p><a class="btn btn--ghost btn--sm" href="login.html">Order this</a></article>
+<article class="card food-card card--hover"><div class="food-art" aria-hidden="true">🍱</div><div class="food-meta"><h3>Veg Thali</h3><span class="price">₹120</span></div><p class="small muted">Dal, seasonal sabzi, rice, rotis & salad.</p><a class="btn btn--ghost btn--sm" href="login.html">Order this</a></article>
+</div>
+</section>
+
+<section class="section" id="plans">
+<div class="plan-banner"><div><span class="eyebrow">Make it a routine</span><h2>Never wonder what lunch is again.</h2><p class="muted">Choose a weekly or monthly plan and keep your meals simple. Skip days when your schedule changes.</p><div class="row wrap"><a class="btn btn--primary" href="login.html">Explore plans</a><span class="small muted">Flexible · convenient · homestyle</span></div></div><div class="mini-points"><div>✓ <span>Daily meal scheduling</span></div><div>✓ <span>Skip or pause days</span></div><div>✓ <span>Easy order history</span></div><div>✓ <span>Delivery tracking</span></div></div></div>
+</section>
+
+<section class="section">
+<div class="section-head"><div><span class="eyebrow">How it works</span><h2>Three easy steps.</h2></div></div>
+<div class="feature-grid">
+<article class="card feature-card stack-sm"><span class="eyebrow">Choose</span><h3>Pick your meal</h3><p class="muted small">Browse today's menu and select what sounds good.</p><span class="feature-num">01</span></article>
+<article class="card feature-card stack-sm"><span class="eyebrow">Order</span><h3>Tell us where</h3><p class="muted small">Save your address and confirm your quantity in seconds.</p><span class="feature-num">02</span></article>
+<article class="card feature-card stack-sm"><span class="eyebrow">Enjoy</span><h3>Follow your tiffin</h3><p class="muted small">See the journey from kitchen preparation to delivery.</p><span class="feature-num">03</span></article>
+</div>
+</section>
+
+<section class="section"><div class="cta"><div><span class="eyebrow">Ready when you are</span><h2>Bring a little home to your day.</h2><p>Sign in and explore the full tiffin experience.</p></div><a class="btn btn--primary" href="login.html">Get started →</a></div></section>
+</main>
+<footer class="home-footer"><span>Daily Tiffin · Fresh food, simple routines.</span><span>Made for everyday comfort.</span></footer>
+</body></html>
