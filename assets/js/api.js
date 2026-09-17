@@ -10,9 +10,23 @@ const initial = () => ({
     { id:"a1", username:"admin", password:"admin123", phone:"9000000000", name:"Kitchen Admin", role:"ADMIN", address:"" }
   ],
   menu: [
-    { id:"m1", name:"Homestyle Veg Thali", description:"Dal, seasonal sabzi, rice, 4 rotis and salad.", price:120, category:"Lunch", available:true },
-    { id:"m2", name:"Paneer Special", description:"Paneer curry, jeera rice, 4 rotis and pickle.", price:160, category:"Dinner", available:true },
-    { id:"m3", name:"Light & Fresh", description:"Moong dal khichdi, curd and fresh salad.", price:100, category:"Lunch", available:true }
+    { id:"m1", name:"Extra Rotis (4 pc)", description:"Freshly roasted whole-wheat rotis on the side.", price:20, category:"Lunch", brand:"thali", emoji:"🫓", tag:"", available:true },
+    { id:"m2", name:"Steamed Rice", description:"A generous portion of plain steamed rice.", price:30, category:"Lunch", brand:"thali", emoji:"🍚", tag:"", available:true },
+    { id:"m3", name:"Curd Bowl", description:"Fresh set curd in a sealed bowl.", price:25, category:"Lunch", brand:"thali", emoji:"🥣", tag:"", available:true },
+    { id:"m4", name:"Pickle & Papad", description:"Homemade mango pickle with crispy papad.", price:15, category:"Snack", brand:"thali", emoji:"🥒", tag:"", available:true },
+    { id:"m5", name:"Gulab Jamun Duo", description:"Two warm gulab jamuns, straight from the kadhai.", price:40, category:"Dessert", brand:"thali", emoji:"🍨", tag:"Sweet fix", available:true },
+    { id:"m6", name:"Mango Lassi", description:"Thick and creamy mango lassi, served chilled.", price:45, category:"Beverage", brand:"thali", emoji:"🥤", tag:"Refresher", available:true },
+    { id:"m7", name:"Paneer Pakora (4 pc)", description:"Crispy paneer pakoras with mint chutney.", price:60, category:"Snack", brand:"thali", emoji:"🧀", tag:"Chef's pick", available:true },
+    { id:"m8", name:"Buttermilk (Chaas)", description:"Spiced, salted buttermilk — the perfect finish.", price:20, category:"Beverage", brand:"thali", emoji:"🥛", tag:"", available:true }
+  ],
+  week: [
+    { day:1, dayName:"Monday", title:"Aloo Gobi Special", items:["Aloo gobi","Dal tadka","4 rotis","Jeera rice","Salad"], price:70, emoji:"🍛" },
+    { day:2, dayName:"Tuesday", title:"Rajma", items:["Rajma","4 rotis","Steamed rice","Salad"], price:70, emoji:"🫘" },
+    { day:3, dayName:"Wednesday", title:"Mix Veg", items:["Mix veg","Dal fry","4 rotis","Jeera rice","Salad"], price:70, emoji:"🥗" },
+    { day:4, dayName:"Thursday", title:"Bhindi Masala", items:["Bhindi masala","4 rotis","Steamed rice","Salad"], price:70, emoji:"🍲" },
+    { day:5, dayName:"Friday", title:"Aloo Matar Pulao", items:["Aloo matar","Dal tadka","4 rotis","Veg pulao","Salad"], price:70, emoji:"🥔" },
+    { day:6, dayName:"Saturday", title:"Palak Paneer", items:["Palak paneer","4 rotis","Jeera rice","Salad"], price:70, emoji:"🧀" },
+    { day:7, dayName:"Sunday", title:"Kadhi Pakoda", items:["Kadhi pakoda","4 rotis","Salad"], price:70, emoji:"🍱" }
   ],
   orders: [],
   subscriptions: []
@@ -31,6 +45,7 @@ db.users = db.users.map((u, i) => ({
   address: String(u.address || "")
 }));
 if (!Array.isArray(db.menu)) db.menu = initial().menu;
+if (!Array.isArray(db.week)) db.week = initial().week;
 if (!Array.isArray(db.orders)) db.orders = [];
 if (!Array.isArray(db.subscriptions)) db.subscriptions = [];
 save();
@@ -102,6 +117,13 @@ export const api = {
     if (!CONFIG.MOCK_MODE) return remote("/menu");
     await delay(); return structuredClone(db.menu);
   },
+  async week() {
+    if (!CONFIG.MOCK_MODE) return remote("/menu/week");
+    await delay(); return structuredClone(db.week);
+  },
+  today() {
+    return (new Date().getDay() + 6) % 7 + 1;
+  },
   async orders() {
     if (!CONFIG.MOCK_MODE) return remote("/orders");
     await delay();
@@ -112,13 +134,22 @@ export const api = {
     if (!CONFIG.MOCK_MODE) return remote("/orders","POST",payload);
     await delay();
     const user = currentUser();
-    const meal = db.menu.find(m => m.id === payload.menuId && m.available);
-    if (!meal) throw new Error("This meal is unavailable.");
+    let meal = null, name = "", price = 0;
+    if (payload.day) {
+      const w = db.week.find(x => x.day === payload.day);
+      if (!w) throw new Error("That day's tiffin isn't on the menu.");
+      meal = { id:`week-${w.day}`, name:`${w.title} (${w.dayName})` };
+      name = meal.name; price = w.price;
+    } else {
+      meal = db.menu.find(m => m.id === payload.menuId && m.available);
+      if (!meal) throw new Error("This dish is unavailable.");
+      name = meal.name; price = meal.price;
+    }
     if (!Number.isInteger(payload.quantity) || payload.quantity < 1 || payload.quantity > 20) throw new Error("Quantity must be between 1 and 20.");
     if (!payload.address?.trim()) throw new Error("A delivery address is required.");
     const order = {
-      id:id("ord"), userId:user.id, customer:user.name, meal:meal.name,
-      quantity:payload.quantity, total:meal.price * payload.quantity,
+      id:id("ord"), userId:user.id, customer:user.name, meal:name,
+      quantity:payload.quantity, total:price * payload.quantity,
       address:payload.address.trim(), status:"confirmed", createdAt:new Date().toISOString()
     };
     db.orders.unshift(order); save(); return structuredClone(order);
@@ -160,7 +191,7 @@ export const api = {
     const user = currentUser();
     if (!["weekly","monthly"].includes(plan)) throw new Error("Invalid plan.");
     if (db.subscriptions.some(s => s.userId === user.id && s.status === "active")) throw new Error("You already have an active plan.");
-    const item = {id:id("sub"),userId:user.id,plan,status:"active",price:plan === "weekly" ? 770 : 3000,createdAt:new Date().toISOString()};
+    const item = {id:id("sub"),userId:user.id,plan,status:"active",price:plan === "weekly" ? 490 : 2100,createdAt:new Date().toISOString()};
     db.subscriptions.push(item); save(); return structuredClone(item);
   },
   async customers() {
@@ -171,11 +202,21 @@ export const api = {
     if (!CONFIG.MOCK_MODE) return remote(payload.id ? `/admin/menu/${encodeURIComponent(payload.id)}` : "/admin/menu",payload.id ? "PUT" : "POST",payload);
     await delay(); admin();
     if (!payload.name?.trim() || !Number.isFinite(payload.price) || payload.price <= 0) throw new Error("Enter a meal name and a positive price.");
-    const meal = {name:payload.name.trim(),description:(payload.description || "").trim(),price:payload.price,category:payload.category,available:!!payload.available};
+    const meal = {name:payload.name.trim(),description:(payload.description || "").trim(),
+      price:payload.price,category:payload.category,available:!!payload.available,
+      brand:payload.brand || (payload.id ? undefined : "thali"),
+      emoji:payload.emoji || (payload.id ? undefined : "🍱"),
+      tag:payload.tag || (payload.id ? undefined : "")};
     if (payload.id) {
       const existing = db.menu.find(m => m.id === payload.id);
       if (!existing) throw new Error("Meal not found.");
+      const brand = meal.brand; delete meal.brand;
+      const emoji = meal.emoji; delete meal.emoji;
+      const tag = meal.tag; delete meal.tag;
       Object.assign(existing,meal);
+      if (brand !== undefined) existing.brand = brand;
+      if (emoji !== undefined) existing.emoji = emoji;
+      if (tag !== undefined) existing.tag = tag;
     } else db.menu.push({id:id("m"),...meal});
     save(); return {message:"Meal saved."};
   }

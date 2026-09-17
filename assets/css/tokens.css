@@ -2,13 +2,18 @@
   --bg:#FAFAF8; --surface:#FFFFFF; --surface-2:#F4F2EE;
   --border:#ECEAE4; --text:#1A1A17; --muted:#77736B;
   --accent:#E0632A; --accent-h:#C9541F; --accent-soft:#FFF1EA;
+  --accent-deep:#B24312;
+  --accent-grad:linear-gradient(135deg,#F07C36 0%,#C4390F 100%);
+  --gold:#E9A03C; --gold-soft:#FFF4E0;
   --ok:#1B8A5A; --ok-soft:#E8F6EF;
   --warn:#C8891B; --warn-soft:#FFF6E5;
   --err:#C4372C; --err-soft:#FDECEA;
-  --r-sm:10px; --r-md:14px; --r-lg:20px; --r-full:999px;
+  --r-sm:10px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-full:999px;
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px;
   --sh-1:0 1px 2px rgba(26,26,23,.05);
   --sh-2:0 8px 28px -12px rgba(26,26,23,.18);
+  --sh-3:0 30px 70px -32px rgba(26,26,23,.35);
+  --glow-accent:0 14px 40px -12px rgba(224,99,42,.5);
   --ease:cubic-bezier(.2,.8,.2,1); --t:.2s var(--ease);
   --rail:248px; --topbar:64px;
   --f:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
@@ -16,8 +21,10 @@
 html[data-theme="dark"]{
   --bg:#121211; --surface:#1B1B19; --surface-2:#232320;
   --border:#2C2C29; --text:#F5F4F1; --muted:#9A968D; --accent-soft:#2A1A12;
+  --gold-soft:#2b2210;
   --ok-soft:#14241d; --warn-soft:#2a2113; --err-soft:#2a1715;
   --sh-2:0 8px 28px -12px rgba(0,0,0,.6);
+  --sh-3:0 30px 70px -32px rgba(0,0,0,.7);
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}

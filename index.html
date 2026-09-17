@@ -1,69 +1,501 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#FAFAF8"><meta name="description" content="Fresh homestyle tiffin meals, simple plans and easy delivery.">
-<title>Daily Tiffin · Homestyle meals</title>
-<link rel="stylesheet" href="assets/css/tokens.css"><link rel="stylesheet" href="assets/css/base.css"><link rel="stylesheet" href="assets/css/components.css"><link rel="stylesheet" href="assets/css/pages.css">
-<script type="module" src="assets/js/theme.js"></script><script src="assets/js/enhancements.js" defer></script>
-<style>
-.home{overflow:hidden}.home__nav{padding-inline:clamp(16px,5vw,72px)}
-.hero--home{max-width:1180px;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);padding-top:clamp(48px,8vw,104px);padding-bottom:clamp(56px,8vw,100px);gap:clamp(28px,6vw,76px)}
-.hero-copy{position:relative;z-index:2}.hero-copy h1{max-width:780px;margin:.1em 0 .25em}.hero-copy .lead{font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.75;max-width:600px}
-.hero-actions{margin-top:22px}.trust-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:28px;color:var(--muted);font-size:.84rem}.trust-row span{display:inline-flex;align-items:center;gap:7px}.trust-row b{color:var(--text)}
-.hero__art--premium{min-height:430px;padding:30px;align-content:end;background:linear-gradient(145deg,var(--accent-soft),var(--surface));border-radius:36px}.plate{min-height:260px;display:grid;place-items:center;border-radius:28px;background:radial-gradient(circle at 50% 40%,var(--surface),var(--accent-soft));border:1px solid var(--border);position:relative;overflow:hidden}.plate::before,.plate::after{content:'';position:absolute;border:1px solid var(--border);border-radius:50%;width:280px;height:280px}.plate::after{width:210px;height:210px}.plate__emoji{font-size:6.5rem;filter:drop-shadow(0 18px 16px rgba(0,0,0,.1));z-index:1}.float-chip{position:absolute;background:var(--surface);border:1px solid var(--border);box-shadow:0 12px 35px -24px rgba(0,0,0,.55);border-radius:999px;padding:9px 12px;font-size:.78rem;z-index:2;animation:chipFloat 4.5s ease-in-out infinite}.chip-a{top:20px;left:18px}.chip-b{right:18px;top:76px;animation-delay:-1.3s}.chip-c{bottom:18px;left:18px;animation-delay:-2.2s}@keyframes chipFloat{50%{transform:translateY(-7px)}}
-.section{max-width:1180px;margin:auto;padding:clamp(48px,7vw,84px) 24px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:26px}.section-head h2{font-size:clamp(1.7rem,3vw,2.5rem)}
-.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.feature-card{min-height:180px;position:relative;overflow:hidden}.feature-num{font-size:3.5rem;font-weight:800;letter-spacing:-.08em;opacity:.09;position:absolute;right:18px;bottom:8px}
-.menu-preview{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.food-card{position:relative;overflow:hidden}.food-art{height:180px;border-radius:20px;background:radial-gradient(circle at 50% 45%,var(--surface),var(--accent-soft));display:grid;place-items:center;font-size:4.5rem;margin-bottom:18px}.food-meta{display:flex;align-items:center;justify-content:space-between;gap:10px}.food-card .btn{margin-top:15px;width:100%}
-.plan-banner{display:grid;grid-template-columns:1.3fr .7fr;gap:22px;align-items:center;background:var(--accent-soft);border:1px solid var(--border);border-radius:28px;padding:clamp(22px,4vw,40px)}.plan-price{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.06em}.mini-points{display:grid;gap:10px}.mini-points div{display:flex;gap:9px;align-items:center;font-size:.9rem}
-.cta{background:var(--text);color:var(--bg);border-radius:30px;padding:clamp(28px,5vw,50px);display:flex;align-items:center;justify-content:space-between;gap:24px}.cta p{color:color-mix(in srgb,var(--bg) 70%,transparent)}
-.home-footer{border-top:1px solid var(--border);padding:28px 24px 38px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:.82rem;max-width:1180px;margin:auto}
-@media(max-width:899px){.hero--home{grid-template-columns:1fr}.hero__art--premium{min-height:350px}.menu-preview,.feature-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.plan-banner{grid-template-columns:1fr}}
-@media(max-width:599px){.hero--home{padding-inline:18px}.hero__art--premium{min-height:300px;border-radius:26px;padding:18px}.plate{min-height:210px}.plate__emoji{font-size:5rem}.float-chip{font-size:.7rem}.section{padding-inline:18px}.section-head{align-items:start;flex-direction:column}.menu-preview,.feature-grid{grid-template-columns:1fr}.food-art{height:155px}.cta{border-radius:24px;flex-direction:column;align-items:flex-start}.trust-row{gap:12px}.home__nav .btn{min-width:88px}}
-@media(prefers-reduced-motion:reduce){.float-chip{animation:none}}
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta http-equiv="Cache-Control" content="no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<meta name="theme-color" content="#FAFAF8"><meta name="description" content="Shri Shyam Rasoi Bhandar — pure vegetarian tiffin service. ₹70 tiffins from a fixed 7-day menu (Aloo Gobi, Rajma, Mix Veg, Bhindi, Aloo Matar, Palak Paneer, Kadhi Pakoda). Taste just like homemade food.">
+<title>Shri Shyam Rasoi Bhandar · Pure Veg Tiffin ₹70 · 7-Day Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/tokens.css?v=5"><link rel="stylesheet" href="assets/css/base.css?v=5"><link rel="stylesheet" href="assets/css/components.css?v=5"><link rel="stylesheet" href="assets/css/pages.css?v=5"><link rel="stylesheet" href="assets/css/home.css?v=5">
+  <script type="module" src="assets/js/theme.js?v=5"></script><script type="module" src="assets/js/three/wheel.js?v=5"></script><script src="assets/js/enhancements.js?v=5" defer></script>
 </head>
-<body class="home">
-<nav class="lp-nav home__nav"><a class="lp-brand" href="index.html">Daily <span>Tiffin</span></a><div class="row"><button class="btn btn--quiet btn--sm" data-theme-toggle aria-label="Toggle theme">◐</button><a class="btn btn--ghost btn--sm" href="login.html">Sign in</a></div></nav>
+<body class="ck">
+<div class="ck-splash" id="splash" aria-hidden="true">
+  <div class="ck-splash__in">
+    <span class="ck-splash__logo">🍱</span>
+    <b>Shri Shyam <span>Rasoi</span> Bhandar</b>
+    <small>freshly cooking… 🔥</small>
+  </div>
+</div>
+<span class="ck-progress" id="progress" aria-hidden="true"></span>
+<nav class="ck-nav">
+  <a class="lp-brand" href="index.html">Shri Shyam <span>Rasoi</span> Bhandar</a>
+  <div class="ck-nav__links" aria-label="On this page">
+    <a href="#week">7-Day Menu</a><a href="#plans">Plans</a><a href="#order">Order Now</a><a href="#how">How it works</a>
+  </div>
+  <div class="ck-nav__cta">
+    <button class="btn btn--quiet btn--sm" data-theme-toggle aria-label="Toggle theme">◐</button>
+    <a class="btn btn--ghost btn--sm" href="login.html">Sign in</a>
+    <a class="btn btn--primary btn--sm" href="https://wa.me/919818781470?text=Namaste%20%F0%9F%99%8F%20I%27d%20like%20to%20order%20today%27s%20tiffin.">💬 WhatsApp</a>
+  </div>
+</nav>
+
 <main>
-<section class="hero hero--home">
-<div class="hero-copy stack">
-<span class="eyebrow">Fresh every day · Made with care</span>
-<h1>A little taste of home, delivered.</h1>
-<p class="lead muted">Comforting vegetarian meals prepared fresh for busy days. Pick today's tiffin, make it a routine, or order whenever home cooking is what you need.</p>
-<div class="row wrap hero-actions"><a class="btn btn--primary" href="login.html">Explore today's menu →</a><a class="btn btn--ghost" href="#plans">See plans</a></div>
-<div class="trust-row"><span>✦ <b>Freshly prepared</b></span><span>✓ <b>Easy ordering</b></span><span>♡ <b>Homestyle taste</b></span></div>
-</div>
-<div class="hero__art hero__art--premium">
-<div class="plate"><span class="float-chip chip-a">🥗 Fresh today</span><span class="float-chip chip-b">★ 4.8 rated</span><span class="float-chip chip-c">₹120 · thali</span><span class="plate__emoji" aria-hidden="true">🍱</span></div>
-<div class="between"><div><span class="eyebrow">Today's favourite</span><h2>Homestyle Veg Thali</h2></div><span class="price">₹120</span></div>
-<p class="muted small">Dal · seasonal sabzi · rice · rotis · salad</p>
-</div>
+<!-- ================= HERO ================= -->
+<section class="ck-hero">
+  <div class="ck-hero__copy">
+    <span class="ck-hero__badge"><span class="dot-ico" aria-hidden="true"></span> Pure veg tiffin · ₹70 only</span>
+    <h1>Taste just like <em>homemade</em> food.</h1>
+    <p class="lead">Shri Shyam Rasoi Bhandar cooks pure vegetarian tiffins from one fixed 7-day menu — clean, fresh and always on time. Vegetable, dal, 4 rotis, rice and salad, delivered to your door for just ₹70.</p>
+    <div class="ck-hero__actions">
+      <a class="btn btn--primary" href="#week">See the 7-day menu ↓</a>
+      <a class="btn btn--ghost" href="tel:+919818781470">📞 Call &amp; order</a>
+      <a class="btn btn--quiet" href="https://wa.me/919818781470?text=Namaste%20%F0%9F%99%8F%20I%27d%20like%20to%20order%20today%27s%20tiffin.">💬 WhatsApp</a>
+    </div>
+    <div class="ck-hero__rate">
+      <span><b>🌱 100% pure veg</b> · every day</span>
+      <span><b>₹70</b> per tiffin</span>
+      <span><b>4 rotis</b> · rice · salad</span>
+    </div>
+    <div class="ck-hero__today"><i aria-hidden="true">🔥</i><span id="today-line">Today's tiffin is cooking…</span><span class="ck-cook-chip" id="cook-chip">opening soon</span></div>
+  </div>
+
+  <div class="ck-stage" aria-hidden="true">
+    <span class="ck-stage__glow"></span>
+    <div class="ck-stage__3d" id="stage3d" aria-hidden="true"></div>
+    <div class="ck-stage__plate">
+      <span class="ck-stage__emoji">🍱</span>
+      <span class="ck-stage__cook"></span>
+    </div>
+    <div class="ck-stage__ring ck-ring-a"><span><small>menu days</small><b class="big">7</b></span></div>
+    <div class="ck-stage__ring ck-ring-b"><span><small>tiffin</small><b class="big">₹70</b></span></div>
+    <div class="ck-stage__ring ck-ring-c"><span><small>pure</small><b class="big">100%</b></span></div>
+    <div class="ck-stage__ring ck-ring-d"><span><small>rotis</small><b class="big">4</b></span></div>
+    <span class="ck-chip ck-chip--1"><i>🍛</i> Today · Aloo Gobi Special</span>
+    <span class="ck-chip ck-chip--2"><i>🔥</i> Cooked fresh daily</span>
+    <span class="ck-chip ck-chip--3"><i>❤️</i> Homemade taste</span>
+  </div>
 </section>
 
-<section class="section">
-<div class="section-head"><div><span class="eyebrow">Today's menu</span><h2>Simple food. Properly made.</h2></div><a class="btn btn--quiet" href="login.html">View full menu →</a></div>
-<div class="menu-preview">
-<article class="card food-card card--hover"><div class="food-art" aria-hidden="true">🍛</div><div class="food-meta"><h3>Paneer Special</h3><span class="price">₹160</span></div><p class="small muted">Paneer curry, jeera rice, rotis & pickle.</p><a class="btn btn--ghost btn--sm" href="login.html">Order this</a></article>
-<article class="card food-card card--hover"><div class="food-art" aria-hidden="true">🥣</div><div class="food-meta"><h3>Light & Fresh</h3><span class="price">₹100</span></div><p class="small muted">Moong dal khichdi, curd & fresh salad.</p><a class="btn btn--ghost btn--sm" href="login.html">Order this</a></article>
-<article class="card food-card card--hover"><div class="food-art" aria-hidden="true">🍱</div><div class="food-meta"><h3>Veg Thali</h3><span class="price">₹120</span></div><p class="small muted">Dal, seasonal sabzi, rice, rotis & salad.</p><a class="btn btn--ghost btn--sm" href="login.html">Order this</a></article>
+<!-- ================= TICKER ================= -->
+<div class="ck-ticker" aria-hidden="true">
+  <div class="ck-ticker__track">
+    <span><i>✦</i> Pure vegetarian</span><span><i>✦</i> ₹70 per tiffin</span><span><i>✦</i> 7-day rotating menu</span><span><i>✦</i> Homemade taste</span><span><i>✦</i> Clean &amp; fresh</span><span><i>✦</i> Reliable delivery</span>
+    <span><i>✦</i> Pure vegetarian</span><span><i>✦</i> ₹70 per tiffin</span><span><i>✦</i> 7-day rotating menu</span><span><i>✦</i> Homemade taste</span><span><i>✦</i> Clean &amp; fresh</span><span><i>✦</i> Reliable delivery</span>
+  </div>
 </div>
-</section>
-
-<section class="section" id="plans">
-<div class="plan-banner"><div><span class="eyebrow">Make it a routine</span><h2>Never wonder what lunch is again.</h2><p class="muted">Choose a weekly or monthly plan and keep your meals simple. Skip days when your schedule changes.</p><div class="row wrap"><a class="btn btn--primary" href="login.html">Explore plans</a><span class="small muted">Flexible · convenient · homestyle</span></div></div><div class="mini-points"><div>✓ <span>Daily meal scheduling</span></div><div>✓ <span>Skip or pause days</span></div><div>✓ <span>Easy order history</span></div><div>✓ <span>Delivery tracking</span></div></div></div>
-</section>
-
-<section class="section">
-<div class="section-head"><div><span class="eyebrow">How it works</span><h2>Three easy steps.</h2></div></div>
-<div class="feature-grid">
-<article class="card feature-card stack-sm"><span class="eyebrow">Choose</span><h3>Pick your meal</h3><p class="muted small">Browse today's menu and select what sounds good.</p><span class="feature-num">01</span></article>
-<article class="card feature-card stack-sm"><span class="eyebrow">Order</span><h3>Tell us where</h3><p class="muted small">Save your address and confirm your quantity in seconds.</p><span class="feature-num">02</span></article>
-<article class="card feature-card stack-sm"><span class="eyebrow">Enjoy</span><h3>Follow your tiffin</h3><p class="muted small">See the journey from kitchen preparation to delivery.</p><span class="feature-num">03</span></article>
+<div class="ck-ticker ck-ticker--days" aria-hidden="true">
+  <div class="ck-ticker__track ck-ticker__track--rev">
+    <span><i>MON</i> Aloo Gobi · Dal tadka · 4 rotis · Jeera rice · Salad</span>
+    <span><i>TUE</i> Rajma · 4 rotis · Steamed rice · Salad</span>
+    <span><i>WED</i> Mix Veg · Dal fry · 4 rotis · Jeera rice · Salad</span>
+    <span><i>THU</i> Bhindi Masala · 4 rotis · Steamed rice · Salad</span>
+    <span><i>FRI</i> Aloo Matar · Dal tadka · 4 rotis · Veg pulao · Salad</span>
+    <span><i>SAT</i> Palak Paneer · 4 rotis · Jeera rice · Salad</span>
+    <span><i>SUN</i> Kadhi Pakoda · 4 rotis · Salad</span>
+    <span><i>MON</i> Aloo Gobi · Dal tadka · 4 rotis · Jeera rice · Salad</span>
+    <span><i>TUE</i> Rajma · 4 rotis · Steamed rice · Salad</span>
+    <span><i>WED</i> Mix Veg · Dal fry · 4 rotis · Jeera rice · Salad</span>
+    <span><i>THU</i> Bhindi Masala · 4 rotis · Steamed rice · Salad</span>
+    <span><i>FRI</i> Aloo Matar · Dal tadka · 4 rotis · Veg pulao · Salad</span>
+    <span><i>SAT</i> Palak Paneer · 4 rotis · Jeera rice · Salad</span>
+    <span><i>SUN</i> Kadhi Pakoda · 4 rotis · Salad</span>
+  </div>
 </div>
+
+<!-- ================= WEEKLY MENU ================= -->
+<section class="ck-section" id="week">
+  <div class="ck-head">
+    <div><span class="eyebrow">This week's menu</span><h2>Never the same lunch twice.</h2><p>Tap a day to see exactly what lands in your tiffin. Every meal: vegetable, 4 rotis, rice and salad — ₹70 only.</p></div>
+  </div>
+
+  <div class="ck-tabs" role="tablist" aria-label="7-day tiffin menu">
+    <button class="ck-tab" data-day="1" role="tab">Mon</button>
+    <button class="ck-tab" data-day="2" role="tab">Tue</button>
+    <button class="ck-tab" data-day="3" role="tab">Wed</button>
+    <button class="ck-tab" data-day="4" role="tab">Thu</button>
+    <button class="ck-tab" data-day="5" role="tab">Fri</button>
+    <button class="ck-tab" data-day="6" role="tab">Sat</button>
+    <button class="ck-tab" data-day="7" role="tab">Sun</button>
+  </div>
+
+  <div class="ck-week-strip" role="tablist" aria-label="Jump to a day">
+    <button class="ck-day-mini" data-day="1"><span class="d">Mon</span><span class="e">🍛</span><small>Aloo Gobi</small></button>
+    <button class="ck-day-mini" data-day="2"><span class="d">Tue</span><span class="e">🫘</span><small>Rajma</small></button>
+    <button class="ck-day-mini" data-day="3"><span class="d">Wed</span><span class="e">🥗</span><small>Mix Veg</small></button>
+    <button class="ck-day-mini" data-day="4"><span class="d">Thu</span><span class="e">🍲</span><small>Bhindi</small></button>
+    <button class="ck-day-mini" data-day="5"><span class="d">Fri</span><span class="e">🥔</span><small>Aloo Matar</small></button>
+    <button class="ck-day-mini" data-day="6"><span class="d">Sat</span><span class="e">🧀</span><small>Palak Paneer</small></button>
+    <button class="ck-day-mini" data-day="7"><span class="d">Sun</span><span class="e">🍱</span><small>Kadhi</small></button>
+  </div>
+
+  <div class="ck-panels">
+    <article class="ck-panel" data-day="1">
+      <div class="ck-panel__art"><span class="day-chip">Monday</span><span class="food">🍛</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 1</span><h3>Aloo Gobi Special</h3>
+        <ul class="ck-panel__list"><li>Aloo gobi</li><li>Dal tadka</li><li>4 rotis</li><li>Jeera rice</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Monday tiffin</a></div></div>
+    </article>
+    <article class="ck-panel" data-day="2">
+      <div class="ck-panel__art"><span class="day-chip">Tuesday</span><span class="food">🫘</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 2</span><h3>Rajma</h3>
+        <ul class="ck-panel__list"><li>Rajma</li><li>4 rotis</li><li>Steamed rice</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Tuesday tiffin</a></div></div>
+    </article>
+    <article class="ck-panel" data-day="3">
+      <div class="ck-panel__art"><span class="day-chip">Wednesday</span><span class="food">🥗</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 3</span><h3>Mix Veg</h3>
+        <ul class="ck-panel__list"><li>Mix veg</li><li>Dal fry</li><li>4 rotis</li><li>Jeera rice</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Wednesday tiffin</a></div></div>
+    </article>
+    <article class="ck-panel" data-day="4">
+      <div class="ck-panel__art"><span class="day-chip">Thursday</span><span class="food">🍲</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 4</span><h3>Bhindi Masala</h3>
+        <ul class="ck-panel__list"><li>Bhindi masala</li><li>4 rotis</li><li>Steamed rice</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Thursday tiffin</a></div></div>
+    </article>
+    <article class="ck-panel" data-day="5">
+      <div class="ck-panel__art"><span class="day-chip">Friday</span><span class="food">🥔</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 5</span><h3>Aloo Matar Pulao</h3>
+        <ul class="ck-panel__list"><li>Aloo matar</li><li>Dal tadka</li><li>4 rotis</li><li>Veg pulao</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Friday tiffin</a></div></div>
+    </article>
+    <article class="ck-panel" data-day="6">
+      <div class="ck-panel__art"><span class="day-chip">Saturday</span><span class="food">🧀</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 6</span><h3>Palak Paneer</h3>
+        <ul class="ck-panel__list"><li>Palak paneer</li><li>4 rotis</li><li>Jeera rice</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Saturday tiffin</a></div></div>
+    </article>
+    <article class="ck-panel" data-day="7">
+      <div class="ck-panel__art"><span class="day-chip">Sunday · Favourite</span><span class="food">🍱</span></div>
+      <div><span class="ck-dish__brand">Shri Shyam Rasoi · Day 7</span><h3>Kadhi Pakoda</h3>
+        <ul class="ck-panel__list"><li>Kadhi pakoda</li><li>4 rotis</li><li>Salad</li></ul>
+        <div class="ck-panel__foot"><span><span class="ck-panel__price">₹70</span><small class="per">/ tiffin</small></span>
+        <a class="btn btn--primary" href="login.html">Order Sunday tiffin</a></div></div>
+    </article>
+  </div>
+
+  <div class="ck-stats">
+    <div class="ck-stat"><b data-to="7">0</b><span>Rotating menus · one per day</span></div>
+    <div class="ck-stat"><b data-to="70">0</b><span>Flat price per tiffin (₹)</span></div>
+    <div class="ck-stat"><b data-to="4">0</b><span>Rotis · plus rice &amp; salad</span></div>
+    <div class="ck-stat"><b data-to="100">0</b><span>% pure vegetarian</span></div>
+  </div>
 </section>
 
-<section class="section"><div class="cta"><div><span class="eyebrow">Ready when you are</span><h2>Bring a little home to your day.</h2><p>Sign in and explore the full tiffin experience.</p></div><a class="btn btn--primary" href="login.html">Get started →</a></div></section>
+<!-- ================= PLANS ================= -->
+<section class="ck-section" id="plans">
+  <div class="ck-head">
+    <div><span class="eyebrow">Plans</span><h2>Give us the week. We'll handle lunch.</h2><p>Both plans follow the same 7-day menu at ₹70 per tiffin. Skip or pause any day.</p></div>
+  </div>
+  <div class="ck-plans">
+    <article class="ck-plan ck-plan--hot">
+      <span class="ck-plan__badge">Most popular</span>
+      <span class="eyebrow">Weekly plan</span>
+      <div class="ck-plan__price">₹490<small>/ week</small></div>
+      <p class="per muted">₹70 per tiffin · 7 tiffins · one per day</p>
+      <ul><li>Full 7-day pure veg menu</li><li>Vegetable · dal · 4 rotis · rice · salad</li><li>Skip or pause any day</li><li>Same trusted delivery</li></ul>
+      <a class="btn btn--primary" href="login.html">Start weekly plan</a>
+    </article>
+    <article class="ck-plan">
+      <span class="eyebrow">Monthly plan</span>
+      <div class="ck-plan__price">₹2100<small>/ month</small></div>
+      <p class="per muted">₹70 per tiffin · 30 tiffins · one per day</p>
+      <ul><li>Everything in the weekly plan</li><li>Lunch sorted for a whole month</li><li>Skip or pause up to 7 days</li><li>Priority cooking slots</li></ul>
+      <a class="btn btn--ghost" href="login.html">Start monthly plan</a>
+    </article>
+  </div>
+</section>
+
+<!-- ================= CALL TO ORDER ================= -->
+<section class="ck-section" id="order">
+  <div class="ck-head">
+    <div><span class="eyebrow">Order now</span><h2>Call &amp; order today's tiffin.</h2><p>Talk to us directly — order for today, book the week, or ask us anything. Ordering takes a minute.</p></div>
+  </div>
+  <div class="ck-order">
+    <div class="ck-order__card">
+      <span class="ck-order__ico">💬</span>
+      <div><b>98187 81470</b><small>WhatsApp or call — we reply fast</small></div>
+      <span class="ck-order__acts">
+        <a class="ck-order__link ck-order__link--wa" href="https://wa.me/919818781470?text=Namaste%20%F0%9F%99%8F%20I%27d%20like%20to%20order%20today%27s%20tiffin.">💬 WhatsApp</a>
+        <a class="ck-order__link" href="tel:+919818781470">📞 Call</a>
+      </span>
+    </div>
+    <div class="ck-order__card">
+      <span class="ck-order__ico">💬</span>
+      <div><b>78408 85510</b><small>WhatsApp or call — we reply fast</small></div>
+      <span class="ck-order__acts">
+        <a class="ck-order__link ck-order__link--wa" href="https://wa.me/917848055510?text=Namaste%20%F0%9F%99%8F%20I%27d%20like%20to%20order%20today%27s%20tiffin.">💬 WhatsApp</a>
+        <a class="ck-order__link" href="tel:+917848055510">📞 Call</a>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFERS ================= -->
+<section class="ck-section" id="deals">
+  <div class="ck-head">
+    <div><span class="eyebrow">Small extras</span><h2>Little reasons to smile.</h2></div>
+  </div>
+  <div class="ck-offers">
+    <article class="ck-offer ck-offer--a"><span class="big">₹70<br>Flat</span><p>One honest price for every tiffin. Vegetable, rotis, rice and salad — no surprises.</p><span class="arrow">→</span></article>
+    <article class="ck-offer ck-offer--b"><span class="big">Skip &amp;<br>Credit</span><p>Skip a day on a plan and get the credit back automatically. No questions asked.</p><span class="arrow">→</span></article>
+    <article class="ck-offer ck-offer--c"><span class="big">Refer &amp;<br>Earn</span><p>Invite a neighbour to a weekly plan and both of you get a tiffin free.</p><span class="arrow">→</span></article>
+  </div>
+</section>
+
+<!-- ================= HOW ================= -->
+<section class="ck-section" id="how">
+  <div class="ck-head">
+    <div><span class="eyebrow">How it works</span><h2>From our kitchen to your door.</h2><p>Cooked fresh after your call, packed hot and delivered on time.</p></div>
+  </div>
+  <div class="ck-steps">
+    <article class="ck-step"><span class="num">01</span><div class="ck-step__ico">📞</div><h3>Call or pick a plan</h3><p>Book today's tiffin, or choose weekly / monthly. Your 7-day menu is fixed so you'll always know what's coming.</p></article>
+    <article class="ck-step"><span class="num">02</span><div class="ck-step__ico">🔥</div><h3>Cooked fresh, daily</h3><p>Today's tiffin is cooked fresh each morning — pure veg, clean and never reheated.</p></article>
+    <article class="ck-step"><span class="num">03</span><div class="ck-step__ico">🛵</div><h3>Delivered on time</h3><p>Aloo gobi on Monday, rajma on Tuesday — hot and on your table by lunchtime.</p></article>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="ck-section">
+  <div class="ck-cta">
+    <div><span class="eyebrow" style="color:var(--accent)">Tiffin service with trust ❤️</span><h2>Healthy · Tasty · Affordable.</h2><p>One call starts your daily tiffin. Taste just like homemade food — for ₹70.</p></div>
+    <a class="btn btn--primary" href="tel:+919818781470">📞 Order now</a>
+  </div>
+</section>
 </main>
-<footer class="home-footer"><span>Daily Tiffin · Fresh food, simple routines.</span><span>Made for everyday comfort.</span></footer>
-</body></html>
+
+<footer class="ck-foot">
+  <div class="ck-foot__grid">
+    <div class="ck-foot__brand">
+      <a class="lp-brand" href="index.html">Shri Shyam <span>Rasoi</span> Bhandar</a>
+      <p>Pure vegetarian tiffin service — taste just like homemade food. Vegetable, dal, 4 rotis, rice and salad, fresh every day.</p>
+      <p style="margin-top:12px"><a href="tel:+919818781470">📞 98187 81470</a><span style="opacity:.5"> &nbsp;·&nbsp; </span><a href="tel:+917848055510">📞 78408 85510</a><br><a href="https://wa.me/919818781470?text=Namaste%20%F0%9F%99%8F%20I%27d%20like%20to%20order%20today%27s%20tiffin.">💬 WhatsApp us</a></p>
+    </div>
+    <div>
+      <h4>Menu</h4>
+      <a href="#week">7-day menu</a><a href="#plans">Plans &amp; pricing</a><a href="#deals">Offers</a><a href="#how">How it works</a>
+    </div>
+    <div>
+      <h4>Order now</h4>
+      <a href="tel:+919818781470">Call 98187 81470</a><a href="tel:+917848055510">Call 78408 85510</a><a href="login.html">Sign in</a><a href="login.html">Track an order</a>
+    </div>
+  </div>
+  <div class="ck-foot__base"><span>© 2026 Shri Shyam Rasoi Bhandar · Pure veg tiffin service.</span><span>Healthy · Tasty · Affordable</span></div>
+</footer>
+
+<script>
+(() => {
+  (function splash() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const sp = document.getElementById('splash');
+    if (!sp) return;
+    const go = setTimeout(() => {
+      sp.classList.add('done');
+      setTimeout(() => sp.remove(), 500);
+    }, 900);
+    addEventListener('beforeunload', () => clearTimeout(go));
+  })();
+if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+      history.scrollRestoration = 'manual';
+      const html = document.documentElement;
+      const prev = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      window.scrollTo(0, 0);
+      html.style.scrollBehavior = prev;
+    }
+  const nav = document.querySelector('.ck-nav');
+  const onScroll = () => nav.classList.toggle('is-stuck', scrollY > 10);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(pointer:fine)').matches;
+  const progress = document.querySelector('#progress');
+  const heroEl = document.querySelector('.ck-hero');
+  const copy = document.querySelector('.ck-hero__copy');
+  const stage = document.querySelector('.ck-stage');
+
+  const h1 = document.querySelector('.ck-hero h1');
+  if (h1 && !reducedMotion) {
+    let wi = 0;
+    [...h1.childNodes].forEach(c => {
+      if (c.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(p => {
+          if (!p.trim()) { frag.appendChild(document.createTextNode(p)); return; }
+          const s = document.createElement('span'); s.className = 'rw';
+          const n = document.createElement('span'); n.className = 'rw-in'; n.textContent = p;
+          s.style.setProperty('--i', wi++); s.appendChild(n); frag.appendChild(s);
+        });
+        c.replaceWith(frag);
+      } else if (c.nodeType === 1) {
+        const s = document.createElement('span'); s.className = 'rw';
+        const n = document.createElement('span'); n.className = 'rw-in';
+        s.style.setProperty('--i', wi++); s.appendChild(n);
+        c.replaceWith(s); n.appendChild(c);
+      }
+    });
+    requestAnimationFrame(() => h1.classList.add('hero-in'));
+  }
+  let rafTick = false;
+  const onMove = () => {
+    if (rafTick) return; rafTick = true;
+    requestAnimationFrame(() => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (progress) progress.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max) : 0})`;
+      let p = 0;
+      if (heroEl) { const top = heroEl.getBoundingClientRect().top; p = Math.min(1, Math.max(0, -top / innerHeight)); }
+      if (copy) {
+        if (reducedMotion) { copy.style.transform = ""; copy.style.opacity = ""; }
+        else { copy.style.transform = `translateY(${p * 42}px)`; copy.style.opacity = `${1 - p * .7}`; }
+      }
+      if (stage && finePointer && !reducedMotion) stage.style.transform = `translateY(${-p * 26}px)`;
+      rafTick = false;
+    });
+  };
+  addEventListener('scroll', onMove, {passive:true});
+  addEventListener('resize', () => { onMove(); moveGlide(); });
+  onMove();
+
+  const tabsWrap = document.querySelector('.ck-tabs');
+  const glide = document.createElement('span');
+  glide.className = 'ck-tab__glide';
+  tabsWrap?.appendChild(glide);
+  const moveGlide = () => {
+    if (!glide || !tabsWrap) return;
+    const on = tabsWrap.querySelector('.ck-tab.on');
+    if (!on || matchMedia('(max-width:699px)').matches) { glide.style.opacity = '0'; return; }
+    glide.style.opacity = '1';
+    glide.style.left = `${on.offsetLeft}px`;
+    glide.style.width = `${on.offsetWidth}px`;
+  };
+
+  const today = (new Date().getDay() + 6) % 7 + 1;
+  const tabs = [...document.querySelectorAll('.ck-tab')];
+  const minis = [...document.querySelectorAll('.ck-day-mini')];
+  const panels = [...document.querySelectorAll('.ck-panel')];
+
+  const setMenuUI = day => {
+    tabs.forEach(t => { const on = +t.dataset.day === day; t.classList.toggle('on', on); t.setAttribute('aria-selected', on); });
+    minis.forEach(m => m.classList.toggle('on', +m.dataset.day === day));
+    moveGlide();
+    window.__rasoi3d?.select(day);
+  };
+  const showPanel = day => panels.forEach(p => { p.hidden = +p.dataset.day !== day; p.style.zIndex = ''; });
+  const activate = day => { setMenuUI(day); showPanel(day); };
+
+  const panelOf = d => panels.find(x => +x.dataset.day === d);
+  const SHOW_MS = 2000, TRANS_MS = 1400;
+  let current = today, cycleTimer = null, flipTimer = null, animating = false;
+
+  const cleanFlip = () => {
+    clearTimeout(flipTimer); flipTimer = null;
+    panels.forEach(p => { p.classList.remove('ck-disk-out', 'ck-disk-in'); p.style.zIndex = ''; });
+  };
+  const onPick = day => {
+    cleanFlip();
+    setMenuUI(day); showPanel(day);
+    current = day; animating = false;
+    startCycle();
+  };
+
+  const advance = () => {
+    if (animating || document.hidden) return;
+    const from = current, to = from === 7 ? 1 : from + 1;
+    const cur = panelOf(from), nxt = panelOf(to);
+    if (!cur || !nxt) return;
+    setMenuUI(to);
+    animating = true;
+    panels.forEach(p => { p.hidden = (p !== cur && p !== nxt); });
+    cur.style.zIndex = '1';
+    nxt.style.zIndex = '2';
+    cur.classList.add('ck-disk-out');
+    nxt.classList.add('ck-disk-in');
+    flipTimer = setTimeout(() => {
+      flipTimer = null;
+      cur.hidden = true;
+      cur.classList.remove('ck-disk-out');
+      nxt.classList.remove('ck-disk-in');
+      cur.style.zIndex = ''; nxt.style.zIndex = '';
+      current = to;
+      animating = false;
+    }, TRANS_MS + 60);
+  };
+
+  const fire = () => { advance(); arm(); };
+  const arm = () => { if (!document.hidden) cycleTimer = setTimeout(fire, SHOW_MS + TRANS_MS); };
+  const startCycle = () => { if (cycleTimer || document.hidden) return; cycleTimer = setTimeout(fire, SHOW_MS); };
+  const stopCycle = () => { if (cycleTimer) { clearTimeout(cycleTimer); cycleTimer = null; } };
+
+  [...tabs, ...minis].forEach(el => el.onclick = () => {
+    const day = +el.dataset.day;
+    onPick(day);
+    const p = panelOf(day);
+    if (p) p.scrollIntoView({behavior:"smooth", block:"center"});
+  });
+  document.addEventListener('rasoi:daypick', e => {
+    const day = +e.detail.day;
+    onPick(day);
+    const p = panelOf(day);
+    if (p) p.scrollIntoView({behavior:"smooth", block:"center"});
+  });
+  const menuHost = document.querySelector('.ck-panels');
+  if (menuHost) {
+    menuHost.addEventListener('pointerenter', stopCycle);
+    menuHost.addEventListener('pointerleave', startCycle);
+  }
+  document.addEventListener('visibilitychange', () => document.hidden ? stopCycle() : startCycle());
+  activate(today);
+  startCycle();
+
+  const chips = [...document.querySelectorAll('.ck-chip--1')];
+  const chip = document.querySelector('.ck-chip--1');
+  if (chip) {
+    const p = panels.find(x => +x.dataset.day === today);
+    if (p) chip.innerHTML = `<i>🍛</i> Today · ${p.querySelector('h3').textContent}`;
+  }
+
+  const todayLine = document.querySelector('#today-line');
+  const cookChip = document.querySelector('#cook-chip');
+  if (todayLine && cookChip) {
+    const panel = panels.find(x => +x.dataset.day === today);
+    const CUTOFF_HOUR = 10, CUTOFF_MIN = 30;
+    const pad = n => String(n).padStart(2, "0");
+    const tickCountdown = () => {
+      const now = new Date();
+      const cutoff = new Date(now); cutoff.setHours(CUTOFF_HOUR, CUTOFF_MIN, 0, 0);
+      const seconds = Math.round((cutoff - now) / 1000);
+      if (seconds > 0) {
+        const m = Math.floor(seconds / 60), s = seconds % 60;
+        cookChip.textContent = `order open · ${pad(m)}:${pad(s)} left`;
+        cookChip.classList.add("pulse");
+      } else {
+        cookChip.textContent = "closed for today · tomorrow: new dish";
+        cookChip.classList.remove("pulse");
+      }
+    };
+    if (panel) {
+      todayLine.innerHTML = `Today's tiffin — <b>${panel.querySelector('h3').textContent}</b>, ₹70.`;
+      setInterval(tickCountdown, 1000);
+      tickCountdown();
+    }
+  }
+
+  const nums = [...document.querySelectorAll('.ck-stat b')];
+  const fmt = (v, dec) => v.toLocaleString('en-IN', {minimumFractionDigits:dec, maximumFractionDigits:dec});
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    nums.forEach(el => el.textContent = fmt(+el.dataset.to, +el.dataset.to % 1 !== 0 ? 1 : 0));
+  } else {
+    const io = new IntersectionObserver(entries => entries.forEach(x => {
+      if (!x.isIntersecting) return;
+      io.unobserve(x.target);
+      const el = x.target, target = +el.dataset.to, dec = target % 1 !== 0 ? 1 : 0, dur = 1200, t0 = performance.now();
+      const tick = now => {
+        const p = Math.min(1, (now - t0) / dur);
+        el.textContent = fmt(target * (1 - Math.pow(1 - p, 3)), dec);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }), {threshold:.5});
+    nums.forEach(el => io.observe(el));
+  }
+})();
+</script>
+</body>
+</html>

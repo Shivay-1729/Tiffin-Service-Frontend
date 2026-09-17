@@ -70,6 +70,35 @@ export function toast(message, type = "info") {
   }, 3200);
 }
 
+export function confetti() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  let sheet = document.getElementById("ck-confetti-css");
+  if (!sheet) {
+    sheet = document.createElement("style");
+    sheet.id = "ck-confetti-css";
+    sheet.textContent = `
+      .confetti-holder{position:fixed;inset:0;pointer-events:none;z-index:9999}
+      .confetti-piece{position:absolute;top:-16px;will-change:transform,opacity}
+      @keyframes confetti-fall{to{transform:translateY(112vh) rotate(760deg);opacity:.85}}`;
+    document.head.appendChild(sheet);
+  }
+  const colors = ["#E6A23C", "#7AC74F", "#F0544F", "#3A86FF", "#C77DFF", "#FFC300"];
+  if ($$(".confetti-holder").length > 2) return;
+  const holder = document.createElement("div");
+  holder.className = "confetti-holder";
+  for (let i = 0; i < 70; i++) {
+    const piece = document.createElement("span");
+    piece.className = "confetti-piece";
+    const size = 6 + Math.random() * 6;
+    piece.style.cssText = `left:${Math.random() * 100}vw;width:${size}px;height:${size * 0.6}px;` +
+      `background:${colors[i % colors.length]};border-radius:${Math.random() > .5 ? "50%" : "2px"};` +
+      `animation:confetti-fall ${1.6 + Math.random() * 1.4}s cubic-bezier(.2,.6,.4,1) ${Math.random() * .6}s both`;
+    holder.appendChild(piece);
+  }
+  document.body.appendChild(holder);
+  setTimeout(() => holder.remove(), 4000);
+}
+
 export function modal(title, content, setup) {
   document.querySelector(".modal.open")?.remove();
   const wrap = document.createElement("div");
@@ -88,18 +117,41 @@ export function modal(title, content, setup) {
     </section>`;
   document.body.appendChild(wrap);
 
+  const focusable = wrap.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
   const close = () => {
     wrap.classList.remove("open");
     setTimeout(() => wrap.remove(), 160);
   };
-  $$("[data-close]", wrap).forEach(el => el.addEventListener("click", close));
-  document.addEventListener("keydown", function esc(event) {
+
+  const onKeyDown = (event) => {
     if (event.key === "Escape") {
       close();
-      document.removeEventListener("keydown", esc);
+    } else if (event.key === "Tab") {
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
     }
-  }, { once:false });
+  };
+
+  $$("[data-close]", wrap).forEach(el => el.addEventListener("click", close));
+  document.addEventListener("keydown", onKeyDown);
+
+  const cleanup = () => {
+    document.removeEventListener("keydown", onKeyDown);
+  };
 
   setup?.(wrap, close);
-  return close;
+  first?.focus();
+
+  return () => {
+    close();
+    cleanup();
+  };
 }

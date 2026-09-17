@@ -1,0 +1,190 @@
+/* ============================================================
+   Daily Tiffin · Shared App/Admin Premium Layer
+   Adds entrance reveals, micro-interactions, page transitions
+   without overriding existing tokens/base/layout/components/pages
+   ============================================================ */
+
+/* ---------- reveal-on-scroll (reuses enhancements.js observer) ---------- */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* stagger delays for grids */
+.meal-grid > article:nth-child(2){transition-delay:.05s}
+.meal-grid > article:nth-child(3){transition-delay:.1s}
+.meal-grid > article:nth-child(4){transition-delay:.15s}
+.meal-grid > article:nth-child(5){transition-delay:.2s}
+.meal-grid > article:nth-child(6){transition-delay:.25s}
+
+.ck-plans > article:nth-child(2),
+.ck-offers > article:nth-child(2),
+.ck-steps > article:nth-child(2),
+.ck-order > article:nth-child(2){transition-delay:.1s}
+.ck-offers > article:nth-child(3),
+.ck-steps > article:nth-child(3){transition-delay:.2s}
+
+/* ---------- card hover lift (fine pointers only) ---------- */
+@media(hover:hover) and (pointer:fine){
+  .card--hover{
+    transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease)
+  }
+  .card--hover:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 45px -28px rgba(26,26,23,.42);
+    border-color:color-mix(in srgb,var(--accent) 25%,var(--border))
+  }
+  .meal__art{
+    transition:transform .45s var(--ease)
+  }
+  .card--hover:hover .meal__art{
+    transform:scale(1.025)
+  }
+}
+
+/* ---------- magnetic buttons (fine pointers only) ---------- */
+@media(pointer:fine){
+  .btn[data-magnetic]{
+    transition:transform .18s var(--ease)
+  }
+}
+
+/* ---------- 3D tilt on plan/offer/order cards (fine pointers only) ---------- */
+@media(pointer:fine){
+  .ck-plan,.ck-offer,.ck-order__card{
+    transition:transform .18s var(--ease),box-shadow var(--t),border-color var(--t),background var(--t);
+    transform-style:preserve-3d
+  }
+}
+
+/* ---------- page enter animation ---------- */
+.page-enter{
+  animation:pageIn .5s var(--ease) both
+}
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:none}
+}
+
+/* ---------- reading progress bar (optional, matches home) ---------- */
+.reading-progress{
+  position:fixed;top:0;left:0;right:auto;height:3px;z-index:70;
+  border-radius:0 var(--r-full) var(--r-full) 0;
+  background:linear-gradient(90deg,var(--accent),var(--accent-deep));
+  box-shadow:var(--glow-accent);
+  transform-origin:0 50%;transform:scaleX(0);pointer-events:none
+}
+
+/* ---------- heart button pop ---------- */
+.heart-pop{animation:heartPop .28s var(--ease)}
+@keyframes heartPop{50%{transform:scale(1.25)}100%{transform:scale(1)}}
+
+/* ---------- ambient sparkles (subtle, reduced-motion safe) ---------- */
+.ambient{
+  position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;opacity:.18
+}
+.ambient span{
+  position:absolute;left:calc((var(--i) + 1) * 17%);top:18%;
+  font-size:1.3rem;color:var(--accent);
+  animation:float 9s ease-in-out infinite;
+  animation-delay:calc(var(--i) * -1.7s)
+}
+.ambient span:nth-child(even){top:62%;font-size:.9rem}
+@keyframes float{
+  0%,100%{transform:translate3d(0,0,0) rotate(0);opacity:.18}
+  50%{transform:translate3d(8px,-18px,0) rotate(15deg);opacity:.55}
+}
+@media(prefers-reduced-motion:reduce){
+  .ambient span{animation:none}
+}
+
+/* ---------- admin rail accent variant ---------- */
+body[data-admin="true"] .rail{
+  background:color-mix(in srgb,var(--surface) 90%,var(--accent-soft) 8%)
+}
+body[data-admin="true"] .navlink.on{
+  background:var(--accent);
+  color:#fff
+}
+body[data-admin="true"] .navlink.on::after{
+  background:linear-gradient(180deg,#fff,#ffe0b2)
+}
+body[data-admin="true"] .topbar__t::before{
+  background:var(--gold)
+}
+
+/* ---------- day card today highlight ---------- */
+.day-card--today{
+  border-color:var(--accent);
+  background:linear-gradient(160deg,var(--accent-soft),var(--surface))
+}
+.day-card--today .day-card__badge{
+  color:var(--accent)
+}
+
+/* ---------- meal art decorative accents ---------- */
+.meal__art{
+  position:relative;
+  overflow:hidden;
+  background:radial-gradient(circle at 50% 30%,var(--surface),var(--accent-soft));
+  min-height:150px
+}
+.meal__art::after{
+  content:'';
+  position:absolute;
+  width:100px;height:100px;
+  border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--accent) 18%,transparent);
+  right:-25px;top:-25px
+}
+.meal__art::before{
+  content:'✦';
+  position:absolute;
+  right:20px;bottom:14px;
+  color:var(--accent);
+  opacity:.45;
+  font-size:1.2rem
+}
+
+/* ---------- timeline live dot pulse ---------- */
+.live-dot::after{
+  content:'';
+  position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid color-mix(in srgb,var(--ok) 45%,transparent);
+  animation:livePing 1.8s ease-out infinite
+}
+@keyframes livePing{
+  0%{transform:scale(.4);opacity:1}
+  100%{transform:scale(1.5);opacity:0}
+}
+
+/* ---------- step progress slide ---------- */
+.ord-step.now .ord-step__bar::after{
+  content:'';
+  display:block;height:100%;width:40%;
+  background:linear-gradient(90deg,transparent,var(--gold));
+  animation:stepSlide 1.4s ease-in-out infinite
+}
+@keyframes stepSlide{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(250%)}
+}
+
+/* ---------- timeline dot pulse ---------- */
+.ord-step.now .ord-step__dot{
+  animation:dotPulse 1.8s ease-in-out infinite
+}
+@keyframes dotPulse{
+  50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 14%,transparent)}
+}
+
+/* ---------- reduced motion safety ---------- */
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none}
+  .page-enter{animation:none}
+  .heart-pop{animation:none}
+  .ambient span{animation:none}
+  .live-dot::after{animation:none}
+  .ord-step.now .ord-step__bar::after{animation:none}
+  .ord-step.now .ord-step__dot{animation:none}
+  .meal__art{animation:none}
+  .card--hover:hover{transform:none;box-shadow:var(--sh-1)}
+}

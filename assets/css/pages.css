@@ -90,3 +90,20 @@ body{overflow-x:hidden}
 @media (prefers-reduced-motion: reduce) {
   .auth__box .card--lg { animation: none; }
 }
+
+/* ---------- weekly tiffin menu (app) ---------- */
+.wk-today{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  padding:clamp(18px,3vw,26px);border-radius:var(--r-lg);background:linear-gradient(135deg,var(--accent-soft),var(--surface));
+  border:1px solid var(--border);margin-bottom:var(--s5)}
+.wk-today h2{margin-top:2px}
+.wk-week .hscroll{gap:12px}
+.day-card{width:196px;padding:18px;border-radius:var(--r-lg);background:var(--surface);
+  border:1px solid var(--border);box-shadow:var(--sh-1);display:flex;flex-direction:column;gap:8px;
+  transition:transform var(--t),border-color var(--t),box-shadow var(--t)}
+.day-card:hover{transform:translateY(-4px);box-shadow:var(--sh-2)}
+.day-card--today{border-color:var(--accent);background:linear-gradient(160deg,var(--accent-soft),var(--surface))}
+.day-card__badge{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.day-card--today .day-card__badge{color:var(--accent)}
+.day-card__emoji{font-size:2.4rem}
+.day-card h3{font-size:.98rem;font-weight:700;letter-spacing:-.01em;line-height:1.3}
+.day-card .between{margin-top:auto;padding-top:6px}
