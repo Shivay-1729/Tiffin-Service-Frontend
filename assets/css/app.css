@@ -178,6 +178,24 @@ body[data-admin="true"] .topbar__t::before{
   100%{transform:scale(1.5);opacity:0}
 }
 
+/* ---------- lazy load for smooth mobile scrolling ---------- */
+.lazy-load{opacity:0;transform:translateY(20px);transition:opacity .5s var(--ease),transform .5s var(--ease);will-change:transform,opacity}
+.lazy-load.is-loaded{opacity:1;transform:none;will-change:auto}
+
+/* stagger delays for lazy loaded grids */
+.meal-grid > article.lazy-load:nth-child(2){transition-delay:.05s}
+.meal-grid > article.lazy-load:nth-child(3){transition-delay:.1s}
+.meal-grid > article.lazy-load:nth-child(4){transition-delay:.15s}
+.meal-grid > article.lazy-load:nth-child(5){transition-delay:.2s}
+.meal-grid > article.lazy-load:nth-child(6){transition-delay:.25s}
+
+.ck-plans > article.lazy-load:nth-child(2),
+.ck-offers > article.lazy-load:nth-child(2),
+.ck-steps > article.lazy-load:nth-child(2),
+.ck-order > article.lazy-load:nth-child(2){transition-delay:.1s}
+.ck-offers > article.lazy-load:nth-child(3),
+.ck-steps > article.lazy-load:nth-child(3){transition-delay:.2s}
+
 /* ---------- step progress slide ---------- */
 .ord-step.now .ord-step__bar::after{
   content:'';
@@ -201,6 +219,7 @@ body[data-admin="true"] .topbar__t::before{
 /* ---------- reduced motion safety ---------- */
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none}
+  .lazy-load{opacity:1;transform:none}
   .page-enter{animation:none}
   .heart-pop{animation:none}
   .ambient span{animation:none}

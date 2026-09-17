@@ -112,6 +112,10 @@
 @media(max-width:1023px){.ck-stage{min-height:340px;margin-top:8px}
   .ck-ring-a,.ck-ring-b,.ck-ring-c,.ck-ring-d{display:none}
   .ck-chip--3{left:4%}.ck-chip--2{left:4%}}
+@media(max-width:767px){
+  .ck-chip{display:none}
+  .ck-hero__today{width:100%;justify-content:center}
+}
 
 /* ---------- hero 3D wheel ---------- */
 .ck-stage__3d{position:absolute;inset:0;z-index:2;width:min(92%,460px);aspect-ratio:1;margin:auto;display:grid;

@@ -103,12 +103,28 @@
     const host=document.createElement('div');host.className='ambient';host.setAttribute('aria-hidden','true');
     ['✦','·','✦','·','✧'].forEach((x,i)=>{const s=document.createElement('span');s.textContent=x;s.style.setProperty('--i',i);host.appendChild(s)}); document.body.appendChild(host);
   };
+
+  const lazyLoad = () => {
+    if (reduced) return;
+    const lio = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-loaded');
+          lio.unobserve(entry.target);
+        }
+      });
+    }, {rootMargin: '100px', threshold: 0.05});
+    all('.ck-panel, .ck-plan, .ck-offer, .ck-step, .ck-order__card, .ck-stat, .day-card, .meal-grid > article').forEach(el => {
+      el.classList.add('lazy-load');
+      lio.observe(el);
+    });
+  };
   document.addEventListener('click',ripple,{passive:true});
-  window.addEventListener('load',()=>{theme();favorites();observe();tilt();magnetic();addAmbient();});
+  window.addEventListener('load',()=>{theme();favorites();observe();tilt();magnetic();addAmbient();lazyLoad();});
   let moTimer = 0;
   const debouncedSetup = () => {
     clearTimeout(moTimer);
-    moTimer = setTimeout(() => { observe(); tilt(); magnetic(); addAmbient(); }, 120);
+    moTimer = setTimeout(() => { observe(); tilt(); magnetic(); addAmbient(); lazyLoad(); }, 120);
   };
   new MutationObserver(debouncedSetup).observe(document.body,{subtree:true,childList:true});
 })();
