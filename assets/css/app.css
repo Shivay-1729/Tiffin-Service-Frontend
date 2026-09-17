@@ -57,11 +57,29 @@
 
 /* ---------- page enter animation ---------- */
 .page-enter{
-  animation:pageIn .5s var(--ease) both
+  animation:pageIn .5s var(--ease) both;
+  will-change: transform, opacity
+}
+@media (max-width: 599px) {
+  .page-enter { animation-duration: .3s; }
 }
 @keyframes pageIn{
   from{opacity:0;transform:translateY(16px)}
   to{opacity:1;transform:none}
+}
+
+/* ---------- reveal elements get will-change for layer promotion ---------- */
+.reveal {
+  will-change: transform, opacity
+}
+.reveal.is-visible {
+  will-change: auto
+}
+
+/* ---------- animated cards get will-change on hover (fine pointer) ---------- */
+@media(hover:hover) and (pointer:fine) {
+  .card--hover { will-change: transform, box-shadow, border-color; }
+  .meal__art { will-change: transform; }
 }
 
 /* ---------- reading progress bar (optional, matches home) ---------- */
@@ -77,20 +95,24 @@
 .heart-pop{animation:heartPop .28s var(--ease)}
 @keyframes heartPop{50%{transform:scale(1.25)}100%{transform:scale(1)}}
 
-/* ---------- ambient sparkles (subtle, reduced-motion safe) ---------- */
-.ambient{
-  position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;opacity:.18
-}
-.ambient span{
-  position:absolute;left:calc((var(--i) + 1) * 17%);top:18%;
-  font-size:1.3rem;color:var(--accent);
-  animation:float 9s ease-in-out infinite;
-  animation-delay:calc(var(--i) * -1.7s)
-}
-.ambient span:nth-child(even){top:62%;font-size:.9rem}
-@keyframes float{
-  0%,100%{transform:translate3d(0,0,0) rotate(0);opacity:.18}
-  50%{transform:translate3d(8px,-18px,0) rotate(15deg);opacity:.55}
+/* ---------- ambient sparkles (subtle, reduced-motion safe, desktop only) ---------- */
+@media (min-width: 768px) {
+  .ambient{
+    position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden;opacity:.18;
+    will-change: transform, opacity
+  }
+  .ambient span{
+    position:absolute;left:calc((var(--i) + 1) * 17%);top:18%;
+    font-size:1.3rem;color:var(--accent);
+    animation:float 9s ease-in-out infinite;
+    animation-delay:calc(var(--i) * -1.7s);
+    will-change: transform, opacity
+  }
+  .ambient span:nth-child(even){top:62%;font-size:.9rem}
+  @keyframes float{
+    0%,100%{transform:translate3d(0,0,0) rotate(0);opacity:.18}
+    50%{transform:translate3d(8px,-18px,0) rotate(15deg);opacity:.55}
+  }
 }
 @media(prefers-reduced-motion:reduce){
   .ambient span{animation:none}

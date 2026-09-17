@@ -27,6 +27,7 @@
       g.dataset.revealed = '1';
     }));
   };
+  const isMobile = () => matchMedia('(max-width: 767px)').matches;
   const tilt = () => {
     if (reduced || !matchMedia('(pointer:fine)').matches) return;
     all('.ck-plan,.ck-offer,.ck-order__card').forEach(card => {
@@ -102,7 +103,12 @@
     const host=document.createElement('div');host.className='ambient';host.setAttribute('aria-hidden','true');
     ['✦','·','✦','·','✧'].forEach((x,i)=>{const s=document.createElement('span');s.textContent=x;s.style.setProperty('--i',i);host.appendChild(s)}); document.body.appendChild(host);
   };
-  document.addEventListener('click',ripple);
+  document.addEventListener('click',ripple,{passive:true});
   window.addEventListener('load',()=>{theme();favorites();observe();tilt();magnetic();addAmbient();});
-  new MutationObserver(()=>{observe();tilt();magnetic();addAmbient()}).observe(document.body,{subtree:true,childList:true});
+  let moTimer = 0;
+  const debouncedSetup = () => {
+    clearTimeout(moTimer);
+    moTimer = setTimeout(() => { observe(); tilt(); magnetic(); addAmbient(); }, 120);
+  };
+  new MutationObserver(debouncedSetup).observe(document.body,{subtree:true,childList:true});
 })();
